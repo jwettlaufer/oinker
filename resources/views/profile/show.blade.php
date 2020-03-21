@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-View Profile
+Profile
 @endsection
 
 @section('content')
@@ -10,10 +10,10 @@ View Profile
 <p>
 <ul>
   <li>
-    Email:{{$user->email}}
+    Email: {{$user->email}}
   </li>
   <li>
-    Location:{{$user->location}}
+    Location: {{$user->location}}
   </li>
 </ul>
 </p>

@@ -4,14 +4,18 @@
 Create Oink
 @endsection
 @section('content')
-<p>Create Oink:</p>
 @include('partials.errors')
+
 <form method="post" action="{{route('oinks.store')}}">
   @csrf
-  <label for="message">
-    <strong>Create a post:</strong>
-    <textarea name="message" id="message" rows="10" cols="30"></textarea>
-  </label>
-  <input type="submit" value="Post Oink">
+  <div class="form-group">
+    <label for="message">
+      <strong>Create a post:</strong>
+      <textarea class="form-control" name="message" id="message" rows="5" cols="30"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-warning" value="Post Oink">
+  </div>
 </form>
 @endsection

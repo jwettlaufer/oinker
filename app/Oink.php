@@ -18,7 +18,12 @@ class Oink extends Model
 
     public function comments()
     {
-        return $this->morphMany('App\Comment', 'commentable')->whereNull('parent_id');
+      return $this->morphMany('App\Comment', 'commentable')->whereNull('parent_id');
+    }
+
+    public function likes()
+    {
+      return $this->hasMany('App\Like');
     }
 
 }

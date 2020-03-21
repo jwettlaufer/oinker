@@ -37,3 +37,7 @@ Route::get('/comment/{id}', 'CommentController@edit')->name('comment.edit');
 
 Route::post('/comment/{id}', 'CommentController@update')->name('comment.update');
 */
+
+Route::get('post/like/{id}', ['as' => 'post.like', 'uses' => 'LikeController@likePost']);
+
+Route::get('comment/like/{id}', ['as' => 'comment.like', 'uses' => 'LikeController@likeComment']);

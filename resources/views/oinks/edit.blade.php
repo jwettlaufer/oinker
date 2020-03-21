@@ -4,15 +4,18 @@
 Edit Oink
 @endsection
 @section('content')
-<p>Edit Oink:</p>
 @include('partials.errors')
 <form method="post" action="{{route('oinks.update', $oink->id)}}">
   @csrf
   @method('PATCH')
-  <label for="message">
-    <strong>Edit Post:</strong>
-    <textarea name="message" id="message" rows="10" cols="30">{{$oink->message}}</textarea>
-  </label>
-  <input type="submit" value="Update Oink">
+<div class="form-group">
+    <label for="message">
+      <strong>Edit Post:</strong>
+      <textarea class="form-control" name="message" id="message" rows="5" cols="30">{{$oink->message}}</textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-warning" value="Update Oink">
+  </div>
 </form>
 @endsection

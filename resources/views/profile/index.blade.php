@@ -9,15 +9,16 @@ Profile
 <div role="alert">
   {{session()->get('success')}}
 </div>
+@endif
 @include('partials.errors')
 <h2>{{$user->name}}</h2>
 <p>
 <ul>
   <li>
-    Email:{{$user->email}}
+    Email: {{$user->email}}
   </li>
   <li>
-    Location:{{$user->location}}
+    Location:  {{$user->location}}
   </li>
 </ul>
 <a href="{{route('profile.edit', $user->id)}}">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Oink;
 use App\User;
 use App\Comment;
+use App\Likes;
 use Auth;
 
 class OinkController extends Controller
