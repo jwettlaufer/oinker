@@ -101,4 +101,10 @@ class ProfileController extends Controller
         // Redirect by default.
         return redirect('/oinks');
     }
+
+    public function user($id)
+    {
+        $user = User::find($id);
+        return view('usersView', compact('user'));
+    }
 }

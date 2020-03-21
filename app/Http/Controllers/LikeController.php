@@ -7,6 +7,7 @@ use App\Like;
 
 class LikeController extends Controller
 {
+  /*
     //
     public function likePost($id)
     {
@@ -38,4 +39,5 @@ class LikeController extends Controller
                 $existing_like->restore();
             }
         }
+    */
 }

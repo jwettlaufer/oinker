@@ -23,9 +23,12 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+              <a class="navbar-brand" href="#">
+              <img src="/oinker/public/img/piggy.png" style="height: 50px; width: 50px; border-radius: 50%;" class="img-responsive">
+              </a>
+              <a class="navbar-brand" href="{{ url('/oinks') }}">
+                  {{ config('app.name', 'Laravel') }}
+              </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -38,6 +41,9 @@
                         Index</a>
                       </li>
                       @auth
+                      <li>
+                        <a class="nav-link" href="{{route('users')}}">Users</a>
+                      </li>
                       <li>
                         <a class="nav-link" href="{{route('profile.index')}}">Profile</a>
                       </li>

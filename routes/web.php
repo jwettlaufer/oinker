@@ -21,6 +21,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('users', 'HomeController@users')->name('users');
+Route::get('user/{id}', 'HomeController@user')->name('user.view');
+Route::post('follow', 'HomeController@follwUserRequest')->name('follow');
+
+Route::get('posts', 'HomeController@posts')->name('posts');
+Route::post('like', 'HomeController@LikePost')->name('like');
+
 Route::resource('oinks', 'OinkController');
 
 Route::resource('profile', 'ProfileController');

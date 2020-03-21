@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
 class Oink extends Model
+
 {
+  use CanBeLiked;
     //
     protected $fillable = array(
       'message',
