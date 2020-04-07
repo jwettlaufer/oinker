@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Oink;
 use App\User;
-use App\Profile;
 use App\Comment;
+use App\Profile;
+use App\like;
 use Auth;
+
 
 class ProfileController extends Controller
 {

@@ -14,9 +14,9 @@ class OinksTableSeeder extends Seeder
         //
         $faker = Faker\Factory::create();
 
-      foreach(range(1, 10) as $index){
+      foreach(range(1, 20) as $index){
       DB::table('oinks')->insert(array(
-        'user_id'=>$faker->numberBetween($min = 1, $max = 5),
+        'user_id'=>$faker->numberBetween($min = 1, $max = 20),
         'message'=>$faker->catchphrase
       ));
       }

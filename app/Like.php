@@ -3,26 +3,35 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Like extends Model
 {
     //
-    protected $fillable = array(
-      'likes_id', 'user_id', 'likeable_type'
-    );
-
     use SoftDeletes;
 
-    protected $table = 'likes';
+      protected $table = 'likeables';
+
+    protected $fillable = array(
+      'likes_id',
+      'user_id',
+      'likeable_type'
+    );
+
+    //Get all of the products that are assigned this like.
 
     public function comments()
     {
-        return $this->belongsTo('App\Like');
+        return $this->morphedByMany('App\Comment', 'likeable');
     }
 
-    public function posts()
+     //Get all of the posts that are assigned this like.
+
+    public function oinks()
     {
-        return $this->belongsTo('App\Like');
+        return $this->morphedByMany('App\Oink', 'likeable');
     }
+
+
 
 }

@@ -3,41 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Like;
+use App\Oink;
+use App\User;
+use App\Comment;
+use App\Profile;
+use App\like;
+use Auth;
+
 
 class LikeController extends Controller
 {
-  /*
-    //
-    public function likePost($id)
-    {
 
-        $this->handleLike('App\Post', $id);
-        return redirect()->back();
-    }
+  public function likePost($id)
+  {
+      // here you can check if product exists or is valid or whatever
 
-    public function likeComment($id)
-    {
+      $this->handleLike('App\Oink', $id);
+      return redirect()->back();
+  }
 
-        $this->handleLike('App\Comment', $id);
-        return redirect()->back();
-    }
+  public function handleLike($type, $id)
+  {
+      $existing_like = Like::withTrashed()->whereLikeableType($type)->whereLikeableId($id)->whereUserId(Auth::id())->first();
 
-    public function handleLike($type, $id)
-    {
-        $existing_like = Like::withTrashed()->whereLikeableType($type)->whereLikesId($id)->where("profile_id", "=", $profile->id)->firstOrFail();
-        if (is_null($existing_like)) {
-            Like::create([
-                'user_id'       => Auth::id(),
-                'likes_id'   => $id,
-                'likeable_type' => $type,
-            ]);
-        } else {
-            if (is_null($existing_like->deleted_at)) {
-                $existing_like->delete();
-            } else {
-                $existing_like->restore();
+      if (is_null($existing_like))
+      {
+          Like::create([
+              'user_id'       => Auth::id(),
+              'likeable_id'   => $id,
+              'likeable_type' => $type,
+          ]);
+      } else
+        {
+          if (is_null($existing_like->deleted_at))
+          {
+              $existing_like->delete();
+          } else
+            {
+              $existing_like->restore();
             }
         }
-    */
+  }
 }

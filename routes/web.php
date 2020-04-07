@@ -25,8 +25,8 @@ Route::get('users', 'HomeController@users')->name('users');
 Route::get('user/{id}', 'HomeController@user')->name('user.view');
 Route::post('follow', 'HomeController@follwUserRequest')->name('follow');
 
-Route::get('posts', 'HomeController@posts')->name('posts');
-Route::post('like', 'HomeController@LikePost')->name('like');
+Route::get('comment/like/{id}', ['as' => 'comment.like', 'uses' => 'LikeController@likeComment']);
+Route::get('oink/like/{id}', ['as' => 'oink.like', 'uses' => 'LikeController@likePost']);;
 
 Route::resource('oinks', 'OinkController');
 

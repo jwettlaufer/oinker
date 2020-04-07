@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Oink;
 use App\User;
 use App\Comment;
-use App\Likes;
+use App\Profile;
+use App\like;
 use Auth;
 
 class OinkController extends Controller
@@ -138,4 +139,21 @@ class OinkController extends Controller
       }
         return redirect('/oinks');
     }
+
+    public function like(Post $oink) {
+      $existing_like = Like::withTrashed()->wherePostId($oink->id)->whereUserId(Auth::id())->first();
+
+      if (is_null($existing_like)) {
+        Like::create([
+          'oink_id' => $oink->id,
+          'user_id' => Auth::id()
+        ]);
+      } else {
+        if (is_null($existing_like->deleted_at)) {
+          $existing_like->delete();
+        } else {
+        $existing_like->restore();
+      }
+    }
+  }
 }

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
+use Illuminate\Support\Facades\Auth;
 
 class Oink extends Model
 
@@ -26,7 +27,13 @@ class Oink extends Model
 
     public function likes()
     {
-      return $this->hasMany('App\Like');
+        return $this->morphToMany('App\User', 'likeable')->whereDeletedAt(null);
+    }
+
+    public function getIsLikedAttribute()
+    {
+        $like = $this->likes()->whereUserId(Auth::id())->first();
+        return (!is_null($like)) ? true : false;
     }
 
 }

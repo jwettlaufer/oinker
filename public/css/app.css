@@ -122,6 +122,7 @@ ul,
 dl {
   margin-top: 0;
   margin-bottom: 1rem;
+  list-style: none;
 }
 
 ol ol,
@@ -129,6 +130,7 @@ ul ul,
 ol ul,
 ul ol {
   margin-bottom: 0;
+  list-style: none;
 }
 
 dt {
@@ -10880,4 +10882,5 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+
 }

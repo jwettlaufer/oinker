@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Oink;
 use App\User;
-use App\Profile;
 use App\Comment;
+use App\Profile;
+use App\like;
 use Auth;
+
 
 class HomeController extends Controller
 {
@@ -53,17 +55,4 @@ class HomeController extends Controller
         return response()->json(['success'=>$response]);
     }
 
-    public function LikePost(Request $request){
-
-       $oink = Oink::find($request->id);
-       $response = auth()->user()->toggleLike($oink);
-
-       return response()->json(['success'=>$response]);
-   }
-
-   public function posts()
-    {
-        $oinks = Oink::get();
-        return view('posts', compact('oinks'));
-    }
 }

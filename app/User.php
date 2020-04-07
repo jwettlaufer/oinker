@@ -50,9 +50,19 @@ class User extends Authenticatable
   return $this->hasMany('App\Comment');
 }
 
-public function profiles() {
+  public function profiles() {
 
-return $this->hasOne('App\Profile');
+  return $this->hasOne('App\Profile');
 }
+
+  public function likes() {
+
+    return $this->belongsToMany('App\Oink', 'likes', 'user_id', 'oink_id');
+}
+
+  public function likedPosts() {
+
+    return $this->morphedByMany('App\Oink', 'likeable')->whereDeletedAt(null);
+  }
 
 }
