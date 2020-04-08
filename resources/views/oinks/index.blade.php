@@ -56,4 +56,9 @@ Oinks Index
   </li>
   @endforeach
 </ul>
+<div class="row">
+  <div class="col-12 text-enter">
+    {{$oinks->links()}}
+  </div>
+</div>
 @endsection
