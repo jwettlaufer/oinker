@@ -21,8 +21,7 @@ class OinkController extends Controller
     {
         //
         $oinks = Oink::query()
-                    ->join( 'users', 'oinks.user_id', '=', 'users.id' )
-                    ->get();
+                    ->join( 'users', 'oinks.user_id', '=', 'users.id' )->paginate(5);
 
         Return view('oinks.index', compact('oinks'));
     }
