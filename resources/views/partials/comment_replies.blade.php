@@ -7,6 +7,7 @@
            @csrf
            <div class="form-group">
                <input type="text" name="comment_body" class="form-control" />
+               <div id="app">
                <input type="hidden" name="oink_id" value="{{ $oink_id }}" />
                <input type="hidden" name="comment_id" value="{{ $comment->id }}" />
            </div>

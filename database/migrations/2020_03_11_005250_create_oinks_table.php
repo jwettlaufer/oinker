@@ -17,6 +17,7 @@ class CreateOinksTable extends Migration
           $table->bigIncrements('id');
           $table->bigInteger('user_id');
           $table->string('message');
+          $table->boolean('is_gif')->default(false);
           $table->timestamps();
         });
     }
