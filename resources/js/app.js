@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('Giphy', require('./components/Giphy.vue').default);
 Vue.component('oink-create-form', require('./components/OinkCreateForm.vue').default);
+Vue.component('oink-edit-form', require('./components/OinkEditForm.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

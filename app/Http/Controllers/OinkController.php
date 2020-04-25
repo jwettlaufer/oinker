@@ -114,6 +114,9 @@ class OinkController extends Controller
             $validatedData = $request->validate(array(
                 'message' => 'required|max:240'
             ));
+            if ( isset ($request->is_gif) && $request->is_gif === 'true') {
+              $oink->is_gif = true;
+            }
 
             Oink::whereId($id)->update($validatedData);
 

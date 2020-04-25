@@ -1,5 +1,5 @@
 <template>
-  <form :action="submissionUrl" method="POST">
+  <form :action="editUrl" method="POST">
     <slot></slot>
     <div v-if="isGif" class="form-group">
       <div>
@@ -11,20 +11,24 @@
     </div>
     <div v-else class="form-group">
       <label for="message">
-        <strong>Create a post:</strong>
-        <textarea class="form-control" name="message" id="message" rows="5" cols="30" v-model="message"></textarea>
+        <strong>Edit Post:</strong>
+        <textarea class="form-control" name="message" id="message" rows="5" cols="30" v-model="message"
+        ></textarea>
       </label>
     </div>
     <div class="form-group">
-      <input type="submit" class="btn btn-warning" value="Post Oink" />
+      <input type="submit" class="btn btn-warning" value="Update Oink" />
     </div>
   </form>
 </template>
 
 <script>
 export default {
-  name: "oink-create-form",
-  props: ["submissionUrl"],
+  name: "oink-edit-form",
+  props: ["editUrl", "originalMessage"],
+  mounted () {
+    this.message = this.originalMessage;
+  },
   computed: {
     message: {
       get() {
@@ -56,3 +60,6 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+</style>
