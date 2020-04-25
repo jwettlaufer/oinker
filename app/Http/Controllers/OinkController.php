@@ -57,6 +57,9 @@ class OinkController extends Controller
             $oink = new Oink;
             $oink->user_id = $user->id;
             $oink->message = $validatedData['message'];
+            if ( isset ($request->is_gif) && $request->is_gif === 'true') {
+              $oink->is_gif = true;
+            }
             $oink->save();
 
             return redirect('/oinks')->with('success', 'Oink has been saved.');

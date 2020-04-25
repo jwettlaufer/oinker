@@ -25,7 +25,11 @@ Oinks Index
     </div>
     <div class="card-body">
       <p class="card-text">
+      @if($oink->is_gif == TRUE)
+      <img src="{{$oink->message}}">
+      @else
         {{$oink->message}}
+      @endif
       </p>
     </div>
       <ul>

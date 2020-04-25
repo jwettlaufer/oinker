@@ -7,7 +7,11 @@ Show Oink
 
 <h2><a href="{{route('profile.show', $oink->user->id)}}">{{$oinkUser->name}}</a></h2>
 <p>
+@if($oink->is_gif == TRUE)
+  <img src="{{$oink->message}}">
+@else
   {{$oink->message}}
+@endif
 </p>
 <h4>Display Comments</h4>
 @include('partials.comment_replies', ['comments' => $oink->comments, 'oink_id' => $oink->id])
