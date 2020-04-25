@@ -1989,18 +1989,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'oink-create-form',
   props: ['submissionUrl'],
   computed: {
     message: {
       get: function get() {
+        this.isStringAGIFUrl(this.$attrs.value);
         return this.$attrs.value;
       },
       set: function set(value) {
         this.$emit('input', value);
       }
     }
+  },
+  methods: {
+    isStringAGIFUrl: function isStringAGIFUrl(string) {
+      if (string.includes('http') && string.includes('.gif')) {
+        this.isGif = true;
+        return true;
+      }
+
+      this.isGif = false;
+      return false;
+    },
+    resetMessage: function resetMessage() {
+      this.message = '';
+    }
+  },
+  data: function data() {
+    return {
+      isGif: false
+    };
   }
 });
 
@@ -37497,33 +37524,78 @@ var render = function() {
     [
       _vm._t("default"),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "message" } }, [
-          _c("strong", [_vm._v("Create a post:")]),
-          _vm._v(" "),
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.message,
-                expression: "message"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { name: "message", id: "message", rows: "5", cols: "30" },
-            domProps: { value: _vm.message },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+      _vm.isGif
+        ? _c("div", { staticClass: "form-group" }, [
+            _c("div", [
+              _c("img", { attrs: { src: _vm.message } }),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  on: { click: _vm.resetMessage }
+                },
+                [_vm._v("Reset")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.message,
+                    expression: "message"
+                  }
+                ],
+                attrs: { type: "hidden", name: "message" },
+                domProps: { value: _vm.message },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.message = $event.target.value
+                  }
                 }
-                _vm.message = $event.target.value
-              }
-            }
-          })
-        ])
-      ]),
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", name: "is_gif" },
+                domProps: { value: _vm.isGif }
+              })
+            ])
+          ])
+        : _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "message" } }, [
+              _c("strong", [_vm._v("Create a post:")]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.message,
+                    expression: "message"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "message",
+                  id: "message",
+                  rows: "5",
+                  cols: "30"
+                },
+                domProps: { value: _vm.message },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.message = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
       _vm._v(" "),
       _vm._m(0)
     ],
