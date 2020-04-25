@@ -28,5 +28,16 @@ Vue.component('oink-create-form', require('./components/OinkCreateForm.vue').def
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        message: ''
+    },
+    methods: {
+        imageClicked (imgSrc)
+        {
+            console.log('clicked');
+            console.log(imgSrc);
+            this.message=imgSrc;
+        }
+    }
 });

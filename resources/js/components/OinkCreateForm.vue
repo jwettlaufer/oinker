@@ -4,7 +4,7 @@
     <div class="form-group">
       <label for="message">
         <strong>Create a post:</strong>
-        <textarea class="form-control" name="message" id="message" rows="5" cols="30"></textarea>
+        <textarea class="form-control" name="message" id="message" rows="5" cols="30" v-model="message"></textarea>
       </label>
     </div>
     <div class="form-group">
@@ -16,6 +16,18 @@
 <script>
 export default {
     name: 'oink-create-form',
-    props: ['submission-url']
+    props: ['submissionUrl'],
+    computed: {
+      message: {
+        get()
+        {
+          return this.$attrs.value;
+        },
+        set(value)
+        {
+          this.$emit('input', value);
+        }
+      }
+    }
 }
 </script>

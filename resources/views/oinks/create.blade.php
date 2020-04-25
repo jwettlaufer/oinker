@@ -7,9 +7,9 @@ Create Oink
 @include('partials.errors')
 
 <div id="app">
-<oink-create-form submission-url="{{route('oinks.store')}}">
+<oink-create-form v-model="message" submission-url="{{route('oinks.store')}}">
 @csrf
 </oink-create-form>
-<Giphy />
+<Giphy v-on:image-clicked="imageClicked" />
 </div>
 @endsection

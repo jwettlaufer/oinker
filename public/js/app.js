@@ -1937,15 +1937,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Giphy",
   data: function data() {
@@ -1958,20 +1949,16 @@ __webpack_require__.r(__webpack_exports__);
     giphySearch: function giphySearch(event) {
       var _this = this;
 
-      // Prevent form from submitting.
-      event.preventDefault(); // Pull data from the GIPHY API.
-
+      event.preventDefault();
       fetch("https://api.giphy.com/v1/gifs/search?api_key=mlanSvSoLUocHdTDQvQhhDkGEuPlvH4W&limit=25&offset=0&rating=G&lang=en&q=" + this.searchTerm).then(function (response) {
         return response.json();
-      }) // convert to JS object.
-      .then(function (data) {
-        // store the returned data in our "results".
+      }).then(function (data) {
         _this.results = data;
       });
     },
     getImageUrl: function getImageUrl(event) {
       var img = event.target;
-      console.log(img.src);
+      this.$emit('image-clicked', img.src);
     }
   }
 });
@@ -2004,7 +1991,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'oink-create-form',
-  props: ['submission-url']
+  props: ['submissionUrl'],
+  computed: {
+    message: {
+      get: function get() {
+        return this.$attrs.value;
+      },
+      set: function set(value) {
+        this.$emit('input', value);
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -37380,7 +37377,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "container" }, [
-    _c("h1", [_vm._v("GIPHY API App")]),
+    _c("h1", [_vm._v("Search for a Gif")]),
     _vm._v(" "),
     _c("div", { staticClass: "columns" }, [
       _c(
@@ -37438,7 +37435,7 @@ var render = function() {
           _vm._l(_vm.results.data, function(image) {
             return _c(
               "li",
-              { key: image, staticClass: "column is-one-quarter" },
+              { key: image.id, staticClass: "column is-one-quarter" },
               [
                 _c("img", {
                   attrs: {
@@ -37497,26 +37494,43 @@ var render = function() {
   return _c(
     "form",
     { attrs: { action: _vm.submissionUrl, method: "POST" } },
-    [_vm._t("default"), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)],
+    [
+      _vm._t("default"),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "message" } }, [
+          _c("strong", [_vm._v("Create a post:")]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.message,
+                expression: "message"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "message", id: "message", rows: "5", cols: "30" },
+            domProps: { value: _vm.message },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.message = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ],
     2
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "message" } }, [
-        _c("strong", [_vm._v("Create a post:")]),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          attrs: { name: "message", id: "message", rows: "5", cols: "30" }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -49726,7 +49740,17 @@ Vue.component('oink-create-form', __webpack_require__(/*! ./components/OinkCreat
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    message: ''
+  },
+  methods: {
+    imageClicked: function imageClicked(imgSrc) {
+      console.log('clicked');
+      console.log(imgSrc);
+      this.message = imgSrc;
+    }
+  }
 });
 
 /***/ }),
